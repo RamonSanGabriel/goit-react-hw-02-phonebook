@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { ContactForm } from './ContactForm/ContactForm';
 export class App extends Component {
   state = {
     contacts: ['Rosie Simpson', 'Hermoine Kline', 'Eden Clements'],
@@ -8,6 +9,7 @@ export class App extends Component {
   handleChangeName = e => {
     this.setState({ name: e.target.value });
     console.log(this.state.name);
+    const { name } = this.state;
   };
   handleChangeNumber = e => {
     this.setState({ number: e.target.value });
@@ -15,26 +17,18 @@ export class App extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = this.state;
-    /*   this.setState({
-      contacts: [...this.state.contacts, `${name} ${number}`],
-      name: '',
-      number: '',
-    }); */
   };
-
   render() {
     const { name, number } = this.state;
     return (
       <>
-        <h1>Phonebook</h1>
-        <form>
+        {/* <ContactForm addContact={this.addContact} contacts={this.contacts} /> */}
+        <form onSubmit={this.handleSubmit}>
           <label>
             <p>Name</p>
             <input
               type="text"
               name="name"
-              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
               required
@@ -56,6 +50,7 @@ export class App extends Component {
           </label>
           <button type="submit">Add contact</button>
         </form>
+        ;<h1>Phonebook</h1>
         <h2>Contacts</h2>
         <ul>
           {this.state.contacts.map(contact => (
