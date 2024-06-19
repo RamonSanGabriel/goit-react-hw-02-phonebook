@@ -72,10 +72,13 @@ export class ContactForm extends Component {
     );
   }
 }
-/* ContactForm.PropTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  handleChangeName: PropTypes.func.isRequired,
-}; */
+ContactForm.propTypes = {
+  addContact: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+};
